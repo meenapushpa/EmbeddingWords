@@ -76,12 +76,6 @@ model.add(Dense(100, activation='relu'))
 model.add(Dropout(0.7))
 model.add(Dense(7, activation='sigmoid'))  # 7 targets, each done as a logistic
 
-<<<<<<< HEAD:Part2/WithoutEmbedding.py
-=======
-# compile the model
-model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy',keras_metrics.precision(), keras_metrics.recall(), keras_metrics.f1_score()])
->>>>>>> 05ebe55bf2f2984890d4b1ff49827183eb586891:WithoutEmbedding/WithoutEmbedding.py
-
 # compile the model
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['acc'])
 
@@ -91,14 +85,10 @@ checkpoint = ModelCheckpoint(file_path, monitor='val_acc', verbose=1, save_best_
 early = EarlyStopping(monitor="val_acc", mode="min", patience=20)
 callbacks_list = [checkpoint,early] #early
 # fit the model
-<<<<<<< HEAD:Part2/WithoutEmbedding.py
-model.fit(X_train, y_train, batch_size=64, epochs=1, validation_split=0.2,callbacks=callbacks_list,verbose=1)
-=======
 model.fit(X_train, y_train, batch_size=64, epochs=5, validation_split=0.2, callbacks=callbacks_list, verbose=1)
 
 model.load_weights(file_path)
 loss, accuracy, precision, recall, f1  = model.evaluate(X_val, y_val, verbose=1)
->>>>>>> 05ebe55bf2f2984890d4b1ff49827183eb586891:WithoutEmbedding/WithoutEmbedding.py
 
 #predict calculate for test sets using sequential model
 sequentialpredict = model.predict(X_val)
