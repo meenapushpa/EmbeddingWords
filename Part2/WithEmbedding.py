@@ -62,7 +62,7 @@ y_val = to_categorical(np.asarray(labels[y_val.index]))
 
 # Lets pull out the core elements in the GloVe dataset, ie. the Weights x Dimensions, and words
 embeddings_index = dict()
-f = open('D:\\Priya\\Work3\\dump\\glove.6B\\glove.6B.100d.txt',encoding="utf8")
+f = open('D:\\Priya\\Work3\\Test\\glove.6B\\glove.6B.100d.txt',encoding="utf8")
 for line in f:
     values = line.split()
     word = values[0]
@@ -135,7 +135,7 @@ def f1_m(y_val, sequentialpredict):
     return 2*((precision*recall)/(precision+recall+K.epsilon()))
 
 # test set predict values are printed in test_predict.xlsx
-dfF = pd.DataFrame({'NB_Predict':classes})
+dfF = pd.DataFrame({'WithEmbedding_Predict':classes})
 dfF = dfF.fillna(1)
 dfF = dfF.astype(int)
 dfF.replace({0:'affection', 1:'exercise', 2:'bonding', 3:'leisure', 4:'achievement' , 5:'enjoy_the_moment', 6:'nature'}, inplace=True)

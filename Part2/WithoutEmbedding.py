@@ -88,7 +88,7 @@ callbacks_list = [checkpoint,early] #early
 model.fit(X_train, y_train, batch_size=64, epochs=5, validation_split=0.2, callbacks=callbacks_list, verbose=1)
 
 model.load_weights(file_path)
-loss, accuracy, precision, recall, f1  = model.evaluate(X_val, y_val, verbose=1)
+score = model.evaluate(X_val, y_val, verbose=1)
 
 #predict calculate for test sets using sequential model
 sequentialpredict = model.predict(X_val)
