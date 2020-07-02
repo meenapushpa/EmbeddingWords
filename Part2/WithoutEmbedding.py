@@ -85,13 +85,10 @@ checkpoint = ModelCheckpoint(file_path, monitor='val_acc', verbose=1, save_best_
 early = EarlyStopping(monitor="val_acc", mode="min", patience=20)
 callbacks_list = [checkpoint,early] #early
 # fit the model
-model.fit(X_train, y_train, batch_size=64, epochs=5, validation_split=0.2, callbacks=callbacks_list, verbose=1)
-
-model.load_weights(file_path)
-score = model.evaluate(X_val, y_val, verbose=1)
+model.fit(X_train, y_train, batch_size=64, epochs=1, validation_split=0.2, callbacks=callbacks_list, verbose=1)
 
 #predict calculate for test sets using sequential model
-sequentialpredict = model.predict(X_val)
+sequentialpredict = model.predict(X_val, batch_size=64, verbose=1)
 classes = np.argmax(sequentialpredict, axis = 1)
 
 # recall method
