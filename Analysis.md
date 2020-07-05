@@ -1,8 +1,8 @@
-I did a detailed analysis and found there are two way to complie the keras model. They are below
+I did a detailed analysis and found there are two way to complie the keras model. They are listed below
 
 ## binary_crossentropy
 
-From given Jupyter book, we are using binary_crossentropy model to complie and find accuracy & loss. There are two ways to calculate the accuracy.
+From given Jupyter book, we are using binary_crossentropy model to complie and find accuracy & loss. Again there are two ways to calculate the accuracy within binary_crossentropy.
 
 [1] `model.evaluate()` is calculating accuracy between sequential predict vs the given predict in cleaned_hm.csv ( as you shown in your screenshot) for the records 20107 which we took for validation
 
@@ -13,7 +13,7 @@ From given Jupyter book, we are using binary_crossentropy model to complie and f
 						Total number of validation records
 
 
-[2] Keras `K.mean()` method to calculate the accuracy which will return 95% accuracy as printed in the output. Let me try to explain the why this way of accuracy calculation methods return different values than model.evaluate()
+[2] Keras `K.mean()` method to calculate the accuracy which will return 95% accuracy as printed in the output. This is what we have used in our script.Let me try to explain the why this way of accuracy calculation methods return different values than model.evaluate()
 
 Keras `K.mean()` method is calculating accuracy using the one-hot encoded / binarise values for both sequential predict and given predict in cleaned_hm.csv using the formula
 
@@ -46,7 +46,7 @@ What `K.mean()` does is, simply, sums above result list as if True = 1 and False
 
 In our case, following values been used to derive ~95% accuracy output
 
-Onehot encoded values represent - 20107 X 7 = 140749
+Onehot encoded values represent - 20107(validation records) X 7(predicted labels) = 140749
 Out of which 133900 turned as true values, so it returned 95.1339% accuracy.
 
 ## categorical_crossentropy
@@ -69,4 +69,4 @@ In our case, following values been used to derive categorical_crossentropy accur
 
 accuracy value is : 0.706520
 
-PS! - This categorical_crossentropy way will not available in the script and have tested it locally. 
+PS! - This categorical_crossentropy way is not used in our script but I have tested it locally.
