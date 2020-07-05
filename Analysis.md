@@ -13,7 +13,7 @@ From given Jupyter book, we are using binary_crossentropy model to complie and f
 						Total number of validation records
 
 
-[2] Keras `K.mean()` method to calculate the accuracy which will return 95% accuracy as printed in the output. This is what we have used in our script.Let me try to explain the why this way of accuracy calculation methods return different values than model.evaluate()
+[2] Keras `K.mean()` method to calculate the accuracy which will return 95% accuracy as printed in the output. This is the method we used in our script.Let me try to explain the why this way of accuracy calculation methods return different values than model.evaluate()
 
 Keras `K.mean()` method is calculating accuracy using the one-hot encoded / binarise values for both sequential predict and given predict in cleaned_hm.csv using the formula
 
