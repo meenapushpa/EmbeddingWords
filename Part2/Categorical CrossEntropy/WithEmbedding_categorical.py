@@ -139,7 +139,7 @@ dfF = pd.DataFrame({'WithEmbedding_Predict':classes})
 dfF = dfF.fillna(1)
 dfF = dfF.astype(int)
 dfF.replace({0:'affection', 1:'exercise', 2:'bonding', 3:'leisure', 4:'achievement' , 5:'enjoy_the_moment', 6:'nature'}, inplace=True)
-dfF.to_excel("test_predict2.xlsx",sheet_name='sheet1',index=False)
+dfF.to_excel("test_predict_categorical.xlsx",sheet_name='sheet1',index=False)
 # concat the hmid,cleaned_hm,predicted_category values to 'WithEmbeddingConsolidate.xlsx' for test sets
 df1=pd.read_excel('test_set_categorical.xlsx')
 df2=pd.read_excel('test_predict_categorical.xlsx')
@@ -152,9 +152,8 @@ False_data.to_excel("WithEmbeddingConsolidate.xlsx",index=False)
 loss,accuracy=model.evaluate(X_val,y_val,verbose=1)
 print('[INFO] Evaluate method Categorical_crossentropy With Embedding accuracy: %f' % accuracy)
 
-print('[INFO] K-mean method Categorical_crossentropy With Embedding accuracy: %f' % accuracy)
-accurac = K.cast(K.equal(K.argmax(y_val, axis=-1),K.argmax(sequentialpredict, axis=-1)),K.floatx())
-print(K.mean(accurac))
+accurac = K.mean(K.cast(K.equal(K.argmax(y_val, axis=-1),K.argmax(sequentialpredict, axis=-1)),K.floatx()))
+print('[INFO] K-mean method Categorical_crossentropy With Embedding accuracy: %f' % accurac)
 
 #calculate the values of accuracy,precison,recall,f1 score
 precision = precision_m(y_val, sequentialpredict)

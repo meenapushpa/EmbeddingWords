@@ -131,9 +131,8 @@ False_data.to_excel("WithoutEmbeddingConsolidate_categorical.xlsx",index=False)
 loss,accuracy=model.evaluate(X_val,y_val,verbose=1)
 print('[INFO] Evaluate method categorical_crossentropy Without Embedding accuracy: %f' % accuracy)
 
-print('[INFO] K-mean categorical_crossentropy Without Embedding accuracy')
-accurac = K.cast(K.equal(K.argmax(y_val, axis=-1),K.argmax(sequentialpredict, axis=-1)),K.floatx())
-print(K.mean(accurac))
+accurac = K.mean(K.cast(K.equal(K.argmax(y_val, axis=-1),K.argmax(sequentialpredict, axis=-1)),K.floatx()))
+print('[INFO] K-mean categorical_crossentropy Without Embedding accuracy: %f' %accurac)
 
 precision = precision_m(y_val, sequentialpredict)
 recall = recall_m(y_val, sequentialpredict)
